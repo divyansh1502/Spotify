@@ -7,7 +7,7 @@ Many other features like search, responsive design, playlist control, and more a
 ---
 
 ## 🚀 Live Demo
-[View Live Demo](YOUR_DEPLOY_LINK_HERE)  
+[View Live Demo][OUR_DEPLOY_LINK_HERE](https://divyansh1502.github.io/Spotify/) <br>
 *(Best view on Desktop not responsive yet)*
 
 ---
@@ -19,3 +19,4 @@ Many other features like search, responsive design, playlist control, and more a
 - Built with HTML, CSS, and JavaScript  
 
 ---
+
