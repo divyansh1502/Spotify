@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify -Music Player</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container flex bg-black">
+      <div class="left">
+        <div class="home bg-grey rounded m-1">
+          <div class="logo"><img class="invert" src="logo.svg" alt="" /></div>
+          <ul>
+            <li><i class="ri-home-2-fill"></i> Home</li>
+            <li><i class="ri-search-line"></i> Search</li>
+          </ul>
+        </div>
+        <div class="library bg-grey rounded m-1">
+          <li><i class="ri-book-shelf-fill"></i>Your Library</li>
+          <div class="song-list">
+            <ul>
+            </ul>
+          </div>
+          <div class="footer">
+          <div>
+            <a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a>
+          </div>
+          <div>
+            <a href="https://www.spotify.com/jp/privacy/"
+              ><span>Privacy Center</span></a
+            >
+          </div>
+          <div>
+            <a href="https://www.spotify.com/jp/legal/privacy-policy/"
+              ><span>Privacy Policy</span></a
+            >
+          </div>
+          <div>
+            <a href="https://www.spotify.com/jp/legal/cookies-policy/"
+              ><span>Cookies</span></a
+            >
+          </div>
+          <div>
+            <a href="https://www.spotify.com/jp/legal/privacy-policy/#s3"
+              ><span>About Ads</span></a
+            >
+          </div>
+          <div>
+            <a href="https://www.spotify.com/jp/accessibility/"
+              ><span>Accessibility</span></a
+            >
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="right bg-grey">
+        <div class="header">
+            <div class="nav">
+                <i class="ri-arrow-left-s-line"></i>
+                <i class="ri-arrow-right-s-line"></i>
+            </div>
+            <div class="buttons">
+                <button>Sign up</button>
+                <button>Log in</button>
+            </div>
+        </div>
+        <div class="spotify-playlist">
+            <h1>Spotify playlist</h1>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://i1.sndcdn.com/artworks-48Hy5mK0AnNi-0-t500x500.png" alt="">
+                    <div class="play"><i class="ri-play-large-fill"></i></div>
+                    <h2>Happy Hits</h2>
+                    <p>Hits to boost your mood and fill you Happiness!</p>
+                </div>
+                <div class="card">
+                    <img src="https://a10.gaanacdn.com/gn_pl_img/playlists/koMWQBbqLE/MWQjwMzAbq/size_l_1713441220.jpg" alt="">
+                    <div class="play"><i class="ri-play-large-fill"></i></div>
+                    <h2>Happy Hits</h2>
+                    <p>Hits to boost your mood and fill you Happiness!</p>
+                </div>
+                <div class="card">
+                    <img src="https://i.scdn.co/image/ab67616d0000b2739314bba62efbb305210d630d" alt="">
+                    <div class="play"><i class="ri-play-large-fill"></i></div>
+                    <h2>Happy Hits</h2>
+                    <p>Hits to boost your mood and fill you Happiness!</p>
+                </div>
+                <div class="card">
+                    <img src="https://i.scdn.co/image/ab67706f00000003d2815ef17832245862beeb51" alt="">
+                    <div class="play"><i class="ri-play-large-fill"></i></div>
+                    <h2>Happy Hits</h2>
+                    <p>Hits to boost your mood and fill you Happiness!</p>
+                </div>
+                <div class="card">
+                    <img src="https://i.scdn.co/image/7a5fdcf968630a28583dd0613bc4735b6ad6a6b6" alt="">
+                    <div class="play"><i class="ri-play-large-fill"></i></div>
+                    <h2>Happy Hits</h2>
+                    <p>Hits to boost your mood and fill you Happiness!</p>
+                </div>
+                <div class="card">
+                    <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da844b0ccd513ea1c63b22e7b316" alt="">
+                    <div class="play"><i class="ri-play-large-fill"></i></div>
+                    <h2>Happy Hits</h2>
+                    <p>Hits to boost your mood and fill you Happiness!</p>
+                </div>
+                
+                                
+            </div>
+            <div class="playbar-container">
+            <div class="playbar">
+              <div class="seekbar">
+                <div class="circle"></div>
+              </div>
+              <div class="song-info">
+
+              </div>
+                <div class="song-button">
+                <div class="previous-playbar"><i class="ri-skip-left-fill"></i></div>
+                <div class="play-playbar"><i class="ri-play-large-fill"></i></div>
+                <div class="next-playbar"><i class="ri-skip-right-fill"></i></div>
+                </div>
+                <div class="song-time"></div>
+            </div>
+            </div>
+        </div>
+      </div>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>
