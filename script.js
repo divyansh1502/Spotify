@@ -23,7 +23,7 @@ async function getSongs() {
 }
 let audio = new Audio()
 const playMusic = (track)=>{
-    audio.src = "http://127.0.0.1:3000/songs/" + track
+    audio.src = "songs/" + track
     audio.play()
 }
 async function main() {
