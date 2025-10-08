@@ -59,8 +59,8 @@ function populateSongList() {
             <div class="info">
               <div class="music"><i class="ri-music-fill"></i></div>
               <div class="song-info">
-                <div>${song.replaceAll("%20", " ")}</div>
-                <div>Karan Aujla</div>
+                <div id="song-title">${song.replaceAll("%20", " ")}</div>
+                <div id="singer">Divyansh Singh</div>
               </div>
             </div>
             <div class="play1"><i class="ri-play-large-fill"></i></div>
@@ -220,14 +220,24 @@ function attachCardListeners() {
     });
 }
 
-// Hamburger toggle (unchanged)
-const hamburger = document.querySelector(".hamburger");
-if (hamburger) {
-    hamburger.addEventListener("click", () => {
+const menuToggle = document.getElementById("menuToggle");
+
+if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
         const left = document.querySelector(".left");
         if (left) left.classList.toggle("active");
+
+        // Toggle hamburger ↔ cross icon
+        if (menuToggle.classList.contains("ri-menu-line")) {
+            menuToggle.classList.remove("ri-menu-line");
+            menuToggle.classList.add("ri-close-line"); // cross icon
+        } else {
+            menuToggle.classList.remove("ri-close-line");
+            menuToggle.classList.add("ri-menu-line");
+        }
     });
 }
+
 
 // Initial setup main()
 async function main() {
@@ -269,6 +279,7 @@ function openSidebarOnMobile() {
             }
         });
     });
+    
 }
 
 // call it after DOM/cards are available

@@ -64,11 +64,19 @@ html, body {
     font-size: 20px;
     padding: 10px 0px;
     align-items: center;
-    gap: 13px;
+    gap: 10px;
 }
 .library{
     min-height: 80vh;
     position: relative;
+}
+#song-title {
+    width: 70%;
+    font-size: 12px;
+}
+#singer {
+    font-size: 10px;
+    font-weight: 800;
 }
 .footer{
     display: flex;
@@ -327,7 +335,12 @@ html, body {
         align-items: flex-start;
         gap: 5px;
     }
-
+    .play1 i {
+    padding: 5px;
+    background-color: #1DB954;
+    border-radius: 50%;
+    opacity: 0;
+}
     .song-button {
         position: relative;
         left: 0;
@@ -365,7 +378,8 @@ html, body {
         left: -260px; /* hide sidebar initially */
         width: 260px;
         height: 100%;
-        background: #121212;
+        background: transparent;
+        backdrop-filter: blur(10px);
         z-index: 1000;
         transition: left 0.3s ease;
         padding: 10px;

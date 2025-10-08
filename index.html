@@ -16,7 +16,7 @@
         <div class="home bg-grey rounded m-1">
           <div class="logo"><img class="invert" src="logo.svg" alt="" /></div>
           <ul>
-            <li><i class="ri-home-2-fill"></i> Home</li>
+            <li id="homeBtn"><i class="ri-home-2-fill"></i> Home</li>
             <li><i class="ri-search-line"></i> Search</li>
           </ul>
         </div>
@@ -60,7 +60,8 @@
       </div>
       <div class="right bg-grey">
         <div class="header">
-          <i class="ri-menu-line hamburger"></i>
+          <i class="ri-menu-line hamburger" id="menuToggle"></i>
+
 
             <div class="nav">
                 <i class="ri-arrow-left-s-line"></i>
@@ -92,7 +93,7 @@
                     <h2>Masoom Sharma</h2>
                     <p>Masoom Sharma’s songs always bring energy and joy.</p>
                 </div>
-                <div class="card">
+                <div class="card" data-songs="playlists/shubh.json">
                     <img src="https://i.scdn.co/image/ab67706f00000003d2815ef17832245862beeb51" alt="">
                     <div class="play"><i class="ri-play-large-fill"></i></div>
                     <h2>Happy Hits</h2>
