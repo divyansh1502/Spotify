@@ -198,9 +198,11 @@ html, body {
 }
 .card h2{
     padding: 0px 15px;
+    font-size: 13px;
 }
 .card p{
     padding: 5px 15px;
+    font-size: 11px;
 }
 .playbar-container{
     height: 100%;
@@ -275,19 +277,19 @@ html, body {
 .seekbar{
     height: 2px;
     width: 94%;
-    border: 2px solid rgb(0, 0, 0);
+    border: 3px solid rgb(0, 0, 0);
     position: absolute;
-    bottom: 5px;
+    bottom: 6px;
     border-radius: 25px;
     cursor: pointer;
 }
 .circle {
-    width: 13px;
-    height: 13px;
+    width: 17px;
+    height: 17px;
     border-radius: 50%;
     background-color: #ffffff;
     position: relative;
-    bottom: 8px;
+    bottom: 10px;
     left: -1%;
     transition: left 0.5s;
 }
@@ -443,4 +445,101 @@ html, body {
         gap: 5px;
         font-size: 8px;
     }
+}
+/* ===================== Responsive Styles for max-width: 900px ===================== */
+@media (max-width: 900px) {
+
+  /* Adjust main layout */
+  .left {
+    width: 40vw;
+  }
+
+  .right {
+    width: 60vw;
+  }
+
+  .card-container {
+    justify-content: center;
+  }
+
+  .card {
+    width: 140px;
+    height: 220px;
+  }
+
+  .card img {
+    border-radius: 10px;
+  }
+
+  /* Header buttons & icons */
+  .header > * {
+    padding: 15px;
+  }
+
+  .buttons button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .nav i {
+    font-size: 20px;
+  }
+
+  /* Song info and playbar */
+  .song-info1 {
+    font-size: 11px;
+  }
+
+  .song-button i {
+    font-size: 26px;
+  }
+
+  .playbar {
+    width: 80%;
+    padding: 20px;
+  }
+
+  /* Sidebar library */
+  .library {
+    font-size: 14px;
+  }
+
+  .song-list ul li {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  /* Make hamburger visible on tablet */
+  .hamburger {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Sidebar slide behavior */
+  .left {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    height: 100%;
+    z-index: 1000;
+    background-color: #121212;
+    transition: left 0.3s ease;
+  }
+
+  .left.active {
+    left: 0;
+  }
+
+  /* Ensure right side covers full width when sidebar hidden */
+  .right {
+    width: 100%;
+  }
+
+  /* Footer smaller */
+  .footer {
+    font-size: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }
