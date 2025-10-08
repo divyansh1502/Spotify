@@ -407,7 +407,7 @@ html, body {
 
     .card {
         height: 210px;
-        width: 30%;
+        width: 29%;
         margin: 5px;
     }
 
@@ -445,101 +445,4 @@ html, body {
         gap: 5px;
         font-size: 8px;
     }
-}
-/* ===================== Responsive Styles for max-width: 900px ===================== */
-@media (max-width: 900px) {
-
-  /* Adjust main layout */
-  .left {
-    width: 40vw;
-  }
-
-  .right {
-    width: 60vw;
-  }
-
-  .card-container {
-    justify-content: center;
-  }
-
-  .card {
-    width: 140px;
-    height: 220px;
-  }
-
-  .card img {
-    border-radius: 10px;
-  }
-
-  /* Header buttons & icons */
-  .header > * {
-    padding: 15px;
-  }
-
-  .buttons button {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-
-  .nav i {
-    font-size: 20px;
-  }
-
-  /* Song info and playbar */
-  .song-info1 {
-    font-size: 11px;
-  }
-
-  .song-button i {
-    font-size: 26px;
-  }
-
-  .playbar {
-    width: 80%;
-    padding: 20px;
-  }
-
-  /* Sidebar library */
-  .library {
-    font-size: 14px;
-  }
-
-  .song-list ul li {
-    font-size: 12px;
-    padding: 10px;
-  }
-
-  /* Make hamburger visible on tablet */
-  .hamburger {
-    display: block;
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  /* Sidebar slide behavior */
-  .left {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    height: 100%;
-    z-index: 1000;
-    background-color: #121212;
-    transition: left 0.3s ease;
-  }
-
-  .left.active {
-    left: 0;
-  }
-
-  /* Ensure right side covers full width when sidebar hidden */
-  .right {
-    width: 100%;
-  }
-
-  /* Footer smaller */
-  .footer {
-    font-size: 8px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
 }
