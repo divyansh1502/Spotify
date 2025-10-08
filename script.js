@@ -23,7 +23,7 @@ async function getSongs() {
 }
 let audio = new Audio()
 const playMusic = (track)=>{
-    audio.src = "songs/" + track
+    audio.src = "https://divyansh1502.github.io/Spotify/songs/" + track
     audio.play()
 }
 async function main() {
