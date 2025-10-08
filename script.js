@@ -13,28 +13,11 @@ function secondsToMinutesSeconds(seconds) {
 }
 
 async function getSongs() {
-
-    let a = await fetch("http://127.0.0.1:3000/songs/");
-    let response = await a.text();
-    console.log(response);
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a");
-    let songs = [];
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            if (element.href.includes("songs%5C")) {
-                songs.push(element.href.split("songs%5C")[1]);
-            } else if (element.href.includes("songs/")) {
-                songs.push(element.href.split("songs/")[1]);
-            } else {
-                songs.push(element.href.split(/[/\\]/).pop());
-            }
-        }
-    }
+    let response = await fetch("./songs.json");
+    let songs = await response.json();
     return songs;
 }
+
 
 let audio = new Audio();
 
