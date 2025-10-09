@@ -71,7 +71,7 @@ html, body {
 .library {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 180px); 
+    height: calc(100vh - 210px); 
     overflow: hidden;
     background: linear-gradient(180deg, rgba(59, 59, 59, 0.75), rgba(89, 89, 89, 0.75));
 }
@@ -603,7 +603,7 @@ html, body {
 .song-time {
     position: absolute;
     bottom: 25px;
-    right: 20px;
+    right: 17px;
 }
 .song-info1 {
     font-weight: 600;
