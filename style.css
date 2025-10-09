@@ -35,9 +35,11 @@ html, body {
     gap: 15px;
     padding-top: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 .home {
     border-radius: 7px;
+    background-color: #121212;
 }
 .bg-black{
     background-color: #000000;
@@ -71,6 +73,7 @@ html, body {
     flex-direction: column;
     height: calc(100vh - 150px); 
     overflow: hidden;
+    background: linear-gradient(180deg, rgba(59, 59, 59, 0.75), rgba(89, 89, 89, 0.75));
 }
 #song-title {
     width: 70%;
@@ -320,7 +323,7 @@ html, body {
     width: 6px;
     height: 17px;
     /* border-radius: 50%; */
-    background-color: #ffffff;
+    background-color: #212121;
     position: relative;
     bottom: 10px;
     left: -1%;
@@ -368,7 +371,7 @@ html, body {
 }
 .search {
       position: relative;
-      width: 230px;
+      width: 200px;
       margin-left: 70px;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -376,14 +379,14 @@ html, body {
 
     .search input {
       width: 100%;
-      padding: 8px 47px;
+      padding: 8px 37px;
       font-size: 16px;
       border: 2px solid #1DB954;
       border-radius: 40px;
       box-sizing: border-box;
     }
 
- 
+    
     .search i {
       position: absolute;
       top: 50%;
@@ -395,6 +398,7 @@ html, body {
       background-color: #1DB954; 
       padding: 10px;
       border-radius: 50%;
+      cursor: pointer;
     }
     .song-button {
         position: relative;
@@ -502,19 +506,57 @@ html, body {
     transition: all ease .5s;
 }
     .playbar {
-        
-        width: 90%;
-        padding: 25px;
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 94%;
+        max-width: 720px;
+        padding: 26px 16px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(180deg, rgba(0, 255, 89, 0.645), rgba(15, 114, 15, 0.35));
+        backdrop-filter: blur(16px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
     }
 
     .song-button i {
-        font-size: 50px;
+        font-size: 44px;
+        color: #ffffff;
+        background: rgba(0,0,0,0.18);
+        padding: 6px;
+        border-radius: 10px;
+        width: 56px;
+        height: 56px;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 6px 14px rgba(12,-14,8.45);
+    }
+
+    .song-button i:hover {
+        transform: scale(1.1);
     }
 
     .song-info1 {
-        font-size: 10px;
-        max-width: 40%;
+    font-weight: 600;
+    font-size: 12px;
+    max-width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+}
+    .song-time {
+        font-size: 11px;
+        color: #e9f7ee;
+        min-width: 80px;
+        text-align: right;
     }
+
     .song-list {
         height: auto;
     }
@@ -527,32 +569,35 @@ html, body {
     padding: 1px;
     background-color: transparent;
     color: white;
-    width: 60px;
+    width: 50px;
     border-radius: 40px;
     border: none;
     font-weight: 400;
     transition: all ease 0.1s;
 }
 .buttons :nth-child(2){
-    padding: 6px;
-    width: 60px;
+    padding: 5px;
+    width: 55px;
     border-radius: 40px;
     border: none;
     font-weight: 400;
-    transition: all ease 0.1s;
+    transition: all ease 0.2s;
+
 }
 .seekbar{
     position: absolute;
-    bottom: 2px;
-    border: 3px solid black;
+    bottom: -3px;
+    border: 3px solid rgb(197, 255, 198);
     margin: 10px 0px;
 }
 .circle{
     position: relative;
     left: -1%;
-    bottom: 6px;
+    bottom: 7px;
     height: 12px;
-    width: 4px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #ffa600;
 }
 .song-time {
     position: absolute;
@@ -563,8 +608,8 @@ html, body {
     font-weight: 600;
     font-size: 12px;
     position: absolute;
-    top: 10%;
-    left: 8%;
+    top: 5%;
+    left: 5%;
     width: 100%;
 }
 

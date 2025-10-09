@@ -1,4 +1,4 @@
-// script.js (updated)
+// script.js (replace your current file with this)
 
 // --- utility ---
 function secondsToMinutesSeconds(seconds) {
@@ -30,9 +30,20 @@ function updatePlayIcons() {
     });
 
     const listItems = document.querySelectorAll(".song-list li");
+    // If list exists and currentIndex points to a valid li, update its icon
     if (listItems.length > 0 && listItems[currentIndex]) {
         const icon = listItems[currentIndex].querySelector(".play1 i");
-        if (icon) icon.className = audio.paused ? "ri-play-large-fill" : "ri-pause-large-fill";
+        if (icon) {
+            // if the audio.dataset.track matches the row's track (best-effort) then toggle icon
+            const rowTrack = songs[currentIndex];
+            const playingTrack = audio.dataset.track;
+            if (playingTrack && decodeURI(playingTrack) === decodeURI(rowTrack)) {
+                icon.className = audio.paused ? "ri-play-large-fill" : "ri-pause-large-fill";
+            } else {
+                // show play icon for rows that are not the current playing track
+                icon.className = "ri-play-large-fill";
+            }
+        }
     }
 
     // update global play button
@@ -78,13 +89,18 @@ async function playMusic(track, index = null) {
     if (!track) return;
     const songPath = "./songs/" + encodeURI(track);
     audio.dataset.track = track;
-    audio.src = songPath;
 
-    if (index !== null) currentIndex = index;
-    else {
+    // If this call came from a row click we set the audio src to selected track (and play).
+    // If the audio is already playing another file and this function is called programmatically with index === null
+    // then we try to resolve index but don't change src unless explicitly asked.
+    if (index !== null) {
+        audio.src = songPath;
+    } else {
         const idx = songs.indexOf(track);
         if (idx !== -1) currentIndex = idx;
     }
+
+    if (index !== null) currentIndex = index;
 
     const titleEl = document.querySelector(".playbar-container .song-info1");
     if (titleEl) titleEl.textContent = track.replaceAll("%20", " ");
@@ -93,9 +109,11 @@ async function playMusic(track, index = null) {
     if (timeEl) timeEl.textContent = `00:00 / 00:00`;
 
     try {
-        await audio.play();
+        // attempt to play only if we set the src (i.e., user clicked a song row or called explicitly)
+        if (index !== null) {
+            await audio.play();
+        }
     } catch (err) {
-        // autoplay may be blocked — stay paused and show correct icons
         console.warn("play() blocked or failed:", err);
     }
 
@@ -145,6 +163,7 @@ if (seekbar) {
 if (playP) {
     playP.addEventListener("click", async () => {
         if (!audio.src) {
+            // If there's no audio loaded but we have songs, start the first track
             if (songs.length > 0) {
                 await playMusic(songs[0], 0);
                 return;
@@ -184,11 +203,10 @@ if (next) {
     });
 }
 
-// --- CARD CLICK LISTENERS (load playlist but do NOT autoplay) ---
+// --- CARD CLICK LISTENERS (load playlist but DO NOT stop currently playing track) ---
 function attachCardListeners() {
     document.querySelectorAll(".card").forEach(card => {
         card.addEventListener("click", async (ev) => {
-            // Prevent accidental double-click or click-on-play-icon from starting playback
             ev.stopPropagation();
 
             const songsFile = card.getAttribute("data-songs");
@@ -198,18 +216,50 @@ function attachCardListeners() {
                 const newSongs = await getSongs("./" + songsFile);
                 if (!Array.isArray(newSongs)) throw new Error("Invalid songs file format");
 
+                // preserve currently playing track if it exists in new playlist
+                const playingTrack = audio.dataset.track || "";
+                const matchIndex = playingTrack ? newSongs.findIndex(s => decodeURI(s) === decodeURI(playingTrack)) : -1;
+
                 songs = newSongs;
-                currentIndex = 0;
+
+                if (matchIndex !== -1) {
+                    // current playing track exists in new playlist -> set currentIndex accordingly
+                    currentIndex = matchIndex;
+                } else {
+                    // otherwise default to the first song in the new playlist for list highlighting
+                    currentIndex = 0;
+                }
+
                 populateSongList();
 
-                // update playbar title to first song but DO NOT auto-play
+                // If there's a currently playing track, keep the playbar showing it.
+                // If nothing is playing, show the first song of the new playlist (but don't autoplay).
                 const titleEl = document.querySelector(".playbar-container .song-info1");
-                if (titleEl && songs.length > 0) titleEl.textContent = songs[0].replaceAll("%20", " ");
+                if (titleEl) {
+                    if (audio.src && audio.dataset.track) {
+                        // show currently playing (best-effort)
+                        titleEl.textContent = (audio.dataset.track || "").replaceAll("%20", " ");
+                    } else if (songs.length > 0) {
+                        titleEl.textContent = songs[0].replaceAll("%20", " ");
+                    } else {
+                        titleEl.textContent = "";
+                    }
+                }
 
-                // ensure UI icons reflect "paused" state
-                audio.pause();
-                audio.src = ""; // clear src so there's no implicit play
+                // IMPORTANT: do NOT pause or clear audio.src here — playback should continue until user pauses.
                 updatePlayIcons();
+
+                // open the library/sidebar so user sees the loaded list
+                const left = document.querySelector(".left");
+                if (left && !left.classList.contains("active")) {
+                    left.classList.add("active");
+                    // keep menu icon consistent with sidebar state
+                    const menuToggle = document.getElementById("menuToggle");
+                    if (menuToggle) {
+                        menuToggle.classList.toggle("ri-menu-line", false);
+                        menuToggle.classList.toggle("ri-close-line", true);
+                    }
+                }
             } catch (err) {
                 console.error("Failed to load songs for card:", err);
             }
@@ -241,7 +291,6 @@ function openSidebarOnMobile() {
                 const left = document.querySelector(".left");
                 if (left && !left.classList.contains("active")) {
                     left.classList.add("active");
-                    // keep menu icon consistent with sidebar state
                     isMenuOpen = true;
                     if (menuToggle) {
                         menuToggle.classList.toggle("ri-menu-line", false);
@@ -256,11 +305,19 @@ function openSidebarOnMobile() {
 // --- main ---
 async function main() {
     try {
-        songs = await getSongs(); // default ./songs.json
+        // load All Songs into the library by default on first visit (but do NOT open sidebar / autoplay)
+        songs = await getSongs("./playlists/all_songs.json");
         if (!Array.isArray(songs)) songs = [];
     } catch (err) {
-        console.error("Could not load songs.json:", err);
-        songs = [];
+        console.error("Could not load playlists/all_songs.json:", err);
+        // fallback to generic songs.json if all_songs not present
+        try {
+            songs = await getSongs();
+            if (!Array.isArray(songs)) songs = [];
+        } catch (err2) {
+            console.error("Could not load default songs.json either:", err2);
+            songs = [];
+        }
     }
 
     populateSongList();
