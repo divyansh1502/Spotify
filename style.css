@@ -260,7 +260,7 @@ html, body {
 }
 .song-button i{
     color: #ffffff;
-    font-size: 29px;
+    font-size: 39px;
     font-weight: 900;
 }
 .song-list ul{
@@ -317,7 +317,7 @@ html, body {
     cursor: pointer;
 }
 .circle {
-    width: 17px;
+    width: 6px;
     height: 17px;
     /* border-radius: 50%; */
     background-color: #ffffff;
